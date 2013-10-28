@@ -24,6 +24,8 @@ int main(void)
 		exit(EXIT_SUCCESS);
 	}
 
+	printf("Child is running!\n");
+
 	/* Change the file mode mask */
 	umask(0);
 		
@@ -42,6 +44,8 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 	
+
+	printf("Start syslog...\n");
 	/* Close out the standard file descriptors */
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
@@ -52,6 +56,9 @@ int main(void)
 	/* The Big Loop */
 	while (1) {
 	   /* Do some task here ... */
+		openlog("helloworldlog", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+		syslog(LOG_INFO, "Hello world from hellod");
+		closelog();	
 	   
 	   sleep(30); /* wait 30 seconds */
 	}
