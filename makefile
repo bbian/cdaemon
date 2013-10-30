@@ -4,4 +4,7 @@ hellod: hellod.c
 clean:
 		rm -f *.o hellod
 
-.PHONE: clean
+install: hellod
+	install -m 0755 hellod /usr/local/bin
+
+.PHONE: clean install
