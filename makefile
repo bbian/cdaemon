@@ -5,6 +5,6 @@ clean:
 		rm -f *.o hellod
 
 install: hellod
-	install -m 0755 hellod /usr/local/bin
+	install -m 0755 hellod ${DESTDIR}/usr/local/bin
 
 .PHONE: clean install
