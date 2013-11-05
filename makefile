@@ -1,8 +1,14 @@
-hellod: hellod.c
-		gcc hellod.c -o hellod
+hellod: hellod.c libfoo.a
+	g++ hellod.c -o hellod -L. -lfoo
+
+libfoo.a: foo.o
+	ar rv $@ $<
+
+foo.o: foo.cc
+	g++ $< -std=c++11 -c 
 
 clean:
-		rm -f *.o hellod
+	rm -f *.o *.a hellod
 
 install: hellod
 	mkdir -p ${DESTDIR}usr/local/bin

@@ -8,11 +8,16 @@
 #include <syslog.h>
 #include <string.h>
 
+extern "C" void test_cplusplus_11(void);
+
 int main(void) 
 {
 	/* Our process ID and Session ID */
 	pid_t pid, sid;
 	
+	/* First test C++11 environment */
+	test_cplusplus_11();
+
 	/* Fork off the parent process */
 	pid = fork();
 	if (pid < 0) {
@@ -44,7 +49,6 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 	
-
 	printf("Start syslog...\n");
 	/* Close out the standard file descriptors */
 	close(STDIN_FILENO);
